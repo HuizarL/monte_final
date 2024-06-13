@@ -23,14 +23,16 @@ async def on_message(message):
 	channel = str(message.channel.name) 
 	user_message = str(message.content) 
 
-	print(f'Message {user_message} by {username} on {channel}') 
+	print(f'Message {user_message} by {username} on {channel}')
+	print(f'This is my Ec2_metadata.region:', ec2_metadata.region)
+	print(f'This is my Ec2_metadata.instance.id:', ec2_metadata.instance_id)
 
 	if message.author == client.user: 
 		return
 
 	if channel == "rodney": 
-		if user_message.lower() == "test": 
-			await message.channel.send(f"Sooner! {username} Your EC2 Data: {ec2_metadata.region}") 
+		if user_message.lower() == "hi": 
+			await message.channel.send(f"Hey! {username}") 
 			return
 		elif user_message.lower() == "do that lil dance you be doing":
 			await message.channel.send(f'Gotchu gang')
