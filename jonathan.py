@@ -3,14 +3,14 @@ import os
 from dotenv import load_dotenv
 from ec2_metadata import ec2_metadata
 
-load_dotenv('token.env') 
+load_dotenv() 
 
 intents = discord.Intents.default()
 intents.messages = True
 intents.message_content = True
 
 client = discord.Client(intents=intents)
-token = str(os.getenv('token')) 
+token = str(os.getenv('TOKEN')) 
 
 print(f'This is my Ec2_metadata.region:', ec2_metadata.region)
 print(f'This is my Ec2_metadata.instance.id:', ec2_metadata.instance_id)
