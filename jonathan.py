@@ -12,6 +12,8 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 token = str(os.getenv('token')) 
 
+print(f'This is my Ec2_metadata.region:', ec2_metadata.region)
+print(f'This is my Ec2_metadata.instance.id:', ec2_metadata.instance_id)
 
 @client.event 
 async def on_ready(): 
@@ -24,8 +26,6 @@ async def on_message(message):
 	user_message = str(message.content) 
 
 	print(f'Message {user_message} by {username} on {channel}')
-	print(f'This is my Ec2_metadata.region:', ec2_metadata.region)
-	print(f'This is my Ec2_metadata.instance.id:', ec2_metadata.instance_id)
 
 	if message.author == client.user: 
 		return
