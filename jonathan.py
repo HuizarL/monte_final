@@ -1,24 +1,29 @@
+#Imports the libraries we need to test and run the bot.
 import discord 
 import os  
 from dotenv import load_dotenv
 from ec2_metadata import ec2_metadata
 
+#Loads environment variables.
 load_dotenv() 
 
+#Declares our intents
 intents = discord.Intents.default()
 intents.messages = True
 intents.message_content = True
 
+#Creates client and token variables.
 client = discord.Client(intents=intents)
 token = str(os.getenv('TOKEN')) 
 
-
+#Events triggered for when the bot is ready.
 @client.event 
 async def on_ready(): 
 	print("Logged in as a bot {0.user}".format(client))
 	print(f'This is my Ec2_metadata.region:', ec2_metadata.region)
 	print(f'This is my Ec2_metadata.instance.id:', ec2_metadata.instance_id)
 
+#
 @client.event 
 async def on_message(message): 
 	username = str(message.author).split("#")[0] 
@@ -30,6 +35,7 @@ async def on_message(message):
 	if message.author == client.user: 
 		return
 
+	#
 	if channel == "rodney": 
 		if user_message.lower() == "hi": 
 			await message.channel.send(f"Hey! {username}") 
@@ -54,4 +60,5 @@ async def on_message(message):
 		elif user_message.lower() == "do the rick thing":
 			await message.channel.send(f'allo')
 
+#
 client.run(token)
