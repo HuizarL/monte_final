@@ -23,7 +23,7 @@ async def on_ready():
 	print(f'This is my Ec2_metadata.region:', ec2_metadata.region)
 	print(f'This is my Ec2_metadata.instance.id:', ec2_metadata.instance_id)
 
-#
+#Event triggered when a message happens
 @client.event 
 async def on_message(message): 
 	username = str(message.author).split("#")[0] 
@@ -35,7 +35,7 @@ async def on_message(message):
 	if message.author == client.user: 
 		return
 
-	#
+	#Checks the channel and if it matches the specified channel then several commands are ready to go when a specific phrase or word is used
 	if channel == "rodney": 
 		if user_message.lower() == "hi": 
 			await message.channel.send(f"Hey! {username}") 
@@ -60,5 +60,5 @@ async def on_message(message):
 		elif user_message.lower() == "do the rick thing":
 			await message.channel.send(f'allo')
 
-#
+#Runs the bot
 client.run(token)
